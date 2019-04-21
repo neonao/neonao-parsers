@@ -1,0 +1,17 @@
+[package]
+name = "neonao_parsers"
+version = "0.1.0"
+authors = ["Quan Brew <t@ioover.net>"]
+edition = "2018"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+combine = "^3.8"
+pulldown-cmark = { version = "0.4", default-features = false }
+serde = { version = "1.0", features = ["derive"] }
+
+[dependencies.wasm-bindgen]
+version = "^0.2"
+features = ["serde-serialize"]
