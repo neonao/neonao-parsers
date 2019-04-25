@@ -12,7 +12,8 @@ pub enum LinkType {
     Autolink,
     Email,
     Unsupported,
-    WorkAround(())
+    // https://github.com/arabidopsis/typescript-definitions/issues/2
+    // WorkAround(()),
 }
 
 impl From<pulldown_cmark::LinkType> for LinkType {
