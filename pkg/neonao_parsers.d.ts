@@ -3,8 +3,7 @@ export type LinkType =
  | "Inline" 
  | "Autolink" 
  | "Email" 
- | "Unsupported" 
- | { WorkAround: [] };
+ | "Unsupported";
 
 export type Tag = 
  | "Paragraph" 
@@ -24,6 +23,6 @@ export type Segment = { event: Event; range: [ number , number ] };
 
 /**
 * @param {string} source 
-* @returns {any} 
+* @returns {Segment[]} 
 */
-export function markdown(source: string): any;
+export function markdown(source: string): Segment[];
