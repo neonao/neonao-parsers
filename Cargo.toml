@@ -1,16 +1,25 @@
 [package]
 name = "neonao_parsers"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Quan Brew <t@ioover.net>"]
 edition = "2018"
+repository = "https://github.com/quanbrew/neonao-parsers"
+license = "GPL-3.0"
+categories = ["parser-implementations", "wasm"]
+description = "Some parsers use for NeoNao project"
 
 [lib]
 crate-type = ["cdylib"]
+
+[[bin]]
+name = "wasm-build"
+path = "src/build.rs"
 
 [dependencies]
 combine = "^3.8"
 pulldown-cmark = { version = "0.4", default-features = false }
 serde = { version = "1.0", features = ["derive"] }
+typescript-definitions = "0.1"
 
 [dependencies.wasm-bindgen]
 version = "^0.2"
