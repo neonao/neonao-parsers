@@ -5,19 +5,19 @@ export type LinkType =
  | "Email" 
  | "Unsupported";
 
-export type Tag = 
- | "Paragraph" 
- | "Emphasis" 
- | "Strong" 
- | "Code" 
- | "Unsupported" 
- | { Link: { kind: LinkType; url: string; title: string } };
+ export type Tag = 
+ | { name: "Paragraph" } 
+ | { name: "Emphasis" } 
+ | { name: "Strong" } 
+ | { name: "Code" } 
+ | { name: "Unsupported" } 
+ | { name: "Link"; kind: LinkType; url: string; title: string };
 
-export type Event = 
- | { Start: { tag: Tag } } 
- | { End: { tag: Tag } } 
- | { Text: { text: string } } 
- | "Unsupported";
+ export type Event = 
+ | { kind: "Start"; tag: Tag } 
+ | { kind: "End"; tag: Tag } 
+ | { kind: "Text"; text: string } 
+ | { kind: "Unsupported" };
 
 export type Segment = { event: Event; range: [ number , number ] };
 

@@ -29,6 +29,7 @@ impl From<pulldown_cmark::LinkType> for LinkType {
 
 // https://docs.rs/pulldown-cmark/0.4.1/pulldown_cmark/enum.Tag.html
 #[derive(Serialize, TypescriptDefinition)]
+#[serde(tag = "name")]
 pub enum Tag {
     Paragraph,
     Emphasis,
@@ -61,6 +62,7 @@ impl<'a> From<pulldown_cmark::Tag<'a>> for Tag {
 }
 
 #[derive(Serialize, TypescriptDefinition)]
+#[serde(tag = "kind")]
 pub enum Event {
     Start { tag: Tag },
     End { tag: Tag },

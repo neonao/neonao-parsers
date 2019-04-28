@@ -1,6 +1,6 @@
 [package]
 name = "neonao_parsers"
-version = "0.2.1"
+version = "0.3.1"
 authors = ["Quan Brew <t@ioover.net>"]
 edition = "2018"
 repository = "https://github.com/quanbrew/neonao-parsers"
