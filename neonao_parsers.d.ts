@@ -46,7 +46,7 @@ export type Event =
  | { kind: "TaskListMarker"; checked: boolean } 
  | { kind: "Html"; html: string } 
  | { kind: "InlineHtml"; html: string } 
- | { kind: "FootnoteReference"; content: string };
+ | { kind: "FootnoteReference"; name: string };
 
 export type Segment = { event: Event; range: [ number , number ] };
 

@@ -152,7 +152,7 @@ pub enum Event {
     TaskListMarker { checked: bool },
     Html { html: String },
     InlineHtml { html: String },
-    FootnoteReference { content: String },
+    FootnoteReference { name: String },
 }
 
 impl<'a> From<pulldown_cmark::Event<'a>> for Event {
@@ -176,8 +176,8 @@ impl<'a> From<pulldown_cmark::Event<'a>> for Event {
             InlineHtml(html) => Event::InlineHtml {
                 html: html.to_string(),
             },
-            FootnoteReference(content) => Event::FootnoteReference {
-                content: content.to_string(),
+            FootnoteReference(name) => Event::FootnoteReference {
+                name: name.to_string(),
             },
         }
     }
