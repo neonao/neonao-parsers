@@ -205,7 +205,7 @@ pub fn markdown(source: &str) -> JsValue {
     options.insert(Options::ENABLE_TABLES);
     options.insert(Options::ENABLE_FOOTNOTES);
     options.insert(Options::ENABLE_TASKLISTS);
-    let segments: Vec<Segment> = Parser::new(source)
+    let segments: Vec<Segment> = Parser::new_ext(source, options)
         .into_offset_iter()
         .map(|(event, range)| Segment::new(event, range))
         .collect();
