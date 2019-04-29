@@ -16,37 +16,37 @@ export type Alignment =
  | "Center" 
  | "Right";
 
-export type Tag = 
- | { name: "Paragraph" } 
- | { name: "Emphasis" } 
- | { name: "Strong" } 
- | { name: "CodeBlock"; language: string } 
- | { name: "BlockQuote" } 
- | { name: "Strikethrough" } 
- | { name: "Table"; alignments: Alignment[] } 
- | { name: "TableHead" } 
- | { name: "TableRow" } 
- | { name: "TableCell" } 
- | { name: "FootnoteDefinition"; text: string } 
- | { name: "HtmlBlock" } 
- | { name: "Rule" } 
- | { name: "Item" } 
- | { name: "Header"; level: number } 
- | { name: "List"; first: number | null } 
- | { name: "Link"; kind: LinkType; url: string; title: string } 
- | { name: "Image"; kind: LinkType; url: string; title: string };
+ export type Tag = 
+ | { type: "Paragraph" } 
+ | { type: "Emphasis" } 
+ | { type: "Strong" } 
+ | { type: "CodeBlock"; language: string } 
+ | { type: "BlockQuote" } 
+ | { type: "Strikethrough" } 
+ | { type: "Table"; alignments: Alignment[] } 
+ | { type: "TableHead" } 
+ | { type: "TableRow" } 
+ | { type: "TableCell" } 
+ | { type: "FootnoteDefinition"; name: string } 
+ | { type: "HtmlBlock" } 
+ | { type: "Rule" } 
+ | { type: "Item" } 
+ | { type: "Header"; level: number } 
+ | { type: "List"; first: number | null } 
+ | { type: "Link"; linkType: LinkType; url: string; title: string } 
+ | { type: "Image"; likeType: LinkType; url: string; title: string };
 
 export type Event = 
- | { kind: "Start"; tag: Tag } 
- | { kind: "End"; tag: Tag } 
- | { kind: "Text"; text: string } 
- | { kind: "SoftBreak" } 
- | { kind: "Code"; code: string } 
- | { kind: "HardBreak" } 
- | { kind: "TaskListMarker"; checked: boolean } 
- | { kind: "Html"; html: string } 
- | { kind: "InlineHtml"; html: string } 
- | { kind: "FootnoteReference"; name: string };
+ | { type: "Start"; tag: Tag } 
+ | { type: "End"; tag: Tag } 
+ | { type: "Text"; text: string } 
+ | { type: "SoftBreak" } 
+ | { type: "Code"; code: string } 
+ | { type: "HardBreak" } 
+ | { type: "TaskListMarker"; checked: boolean } 
+ | { type: "Html"; html: string } 
+ | { type: "InlineHtml"; html: string } 
+ | { type: "FootnoteReference"; name: string };
 
 export type Segment = { event: Event; range: [ number , number ] };
 

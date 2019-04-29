@@ -60,7 +60,7 @@ impl From<pulldown_cmark::Alignment> for Alignment {
 }
 
 #[derive(Serialize, TypescriptDefinition)]
-#[serde(tag = "name")]
+#[serde(tag = "type")]
 pub enum Tag {
     Paragraph,
     Emphasis,
@@ -77,7 +77,7 @@ pub enum Tag {
     TableRow,
     TableCell,
     FootnoteDefinition {
-        text: String,
+        name: String,
     },
     HtmlBlock,
     Rule,
@@ -89,11 +89,13 @@ pub enum Tag {
         first: Option<usize>,
     },
     Link {
+        #[serde(rename = "linkType")]
         kind: LinkType,
         url: String,
         title: String,
     },
     Image {
+        #[serde(rename = "likeType")]
         kind: LinkType,
         url: String,
         title: String,
@@ -128,8 +130,8 @@ impl<'a> From<pulldown_cmark::Tag<'a>> for Tag {
             TableHead => Tag::TableHead,
             TableRow => Tag::TableRow,
             BlockQuote => Tag::BlockQuote,
-            FootnoteDefinition(text) => Tag::FootnoteDefinition {
-                text: text.to_string(),
+            FootnoteDefinition(name) => Tag::FootnoteDefinition {
+                name: name.to_string(),
             },
             CodeBlock(language) => Tag::CodeBlock {
                 language: language.to_string(),
@@ -141,7 +143,7 @@ impl<'a> From<pulldown_cmark::Tag<'a>> for Tag {
 }
 
 #[derive(Serialize, TypescriptDefinition)]
-#[serde(tag = "kind")]
+#[serde(tag = "type")]
 pub enum Event {
     Start { tag: Tag },
     End { tag: Tag },
