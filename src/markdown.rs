@@ -17,7 +17,7 @@ pub enum LinkType {
     Shortcut,
     ShortcutUnknown,
     // https://github.com/arabidopsis/typescript-definitions/issues/2
-    WorkAround(()),
+    // WorkAround(()),
 }
 
 impl From<pulldown_cmark::LinkType> for LinkType {
@@ -44,7 +44,7 @@ pub enum Alignment {
     Center,
     Right,
     // https://github.com/arabidopsis/typescript-definitions/issues/2
-    WorkAround(()),
+    // WorkAround(()),
 }
 
 impl From<pulldown_cmark::Alignment> for Alignment {
@@ -65,7 +65,6 @@ pub enum Tag {
     Paragraph,
     Emphasis,
     Strong,
-    Unsupported,
     CodeBlock {
         language: String,
     },
@@ -147,7 +146,6 @@ pub enum Event {
     Start { tag: Tag },
     End { tag: Tag },
     Text { text: String },
-    Unsupported,
     SoftBreak,
     Code { code: String },
     HardBreak,
@@ -201,6 +199,12 @@ impl Segment {
 
 #[wasm_bindgen]
 pub fn markdown(source: &str) -> JsValue {
+    use pulldown_cmark::Options;
+    let mut options = Options::empty();
+    options.insert(Options::ENABLE_STRIKETHROUGH);
+    options.insert(Options::ENABLE_TABLES);
+    options.insert(Options::ENABLE_FOOTNOTES);
+    options.insert(Options::ENABLE_TASKLISTS);
     let segments: Vec<Segment> = Parser::new(source)
         .into_offset_iter()
         .map(|(event, range)| Segment::new(event, range))

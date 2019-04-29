@@ -20,7 +20,6 @@ export type Tag =
  | { name: "Paragraph" } 
  | { name: "Emphasis" } 
  | { name: "Strong" } 
- | { name: "Unsupported" } 
  | { name: "CodeBlock"; language: string } 
  | { name: "BlockQuote" } 
  | { name: "Strikethrough" } 
@@ -41,7 +40,6 @@ export type Event =
  | { kind: "Start"; tag: Tag } 
  | { kind: "End"; tag: Tag } 
  | { kind: "Text"; text: string } 
- | { kind: "Unsupported" } 
  | { kind: "SoftBreak" } 
  | { kind: "Code"; code: string } 
  | { kind: "HardBreak" } 
