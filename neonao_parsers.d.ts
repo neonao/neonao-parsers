@@ -3,21 +3,52 @@ export type LinkType =
  | "Inline" 
  | "Autolink" 
  | "Email" 
- | "Unsupported";
+ | "Reference" 
+ | "ReferenceUnknown" 
+ | "Collapsed" 
+ | "CollapsedUnknown" 
+ | "Shortcut" 
+ | "ShortcutUnknown";
 
- export type Tag = 
+export type Alignment = 
+ | "None" 
+ | "Left" 
+ | "Center" 
+ | "Right";
+
+export type Tag = 
  | { name: "Paragraph" } 
  | { name: "Emphasis" } 
  | { name: "Strong" } 
- | { name: "Code" } 
  | { name: "Unsupported" } 
- | { name: "Link"; kind: LinkType; url: string; title: string };
+ | { name: "CodeBlock"; language: string } 
+ | { name: "BlockQuote" } 
+ | { name: "Strikethrough" } 
+ | { name: "Table"; alignments: Alignment[] } 
+ | { name: "TableHead" } 
+ | { name: "TableRow" } 
+ | { name: "TableCell" } 
+ | { name: "FootnoteDefinition"; text: string } 
+ | { name: "HtmlBlock" } 
+ | { name: "Rule" } 
+ | { name: "Item" } 
+ | { name: "Header"; level: number } 
+ | { name: "List"; first: number | null } 
+ | { name: "Link"; kind: LinkType; url: string; title: string } 
+ | { name: "Image"; kind: LinkType; url: string; title: string };
 
- export type Event = 
+export type Event = 
  | { kind: "Start"; tag: Tag } 
  | { kind: "End"; tag: Tag } 
  | { kind: "Text"; text: string } 
- | { kind: "Unsupported" };
+ | { kind: "Unsupported" } 
+ | { kind: "SoftBreak" } 
+ | { kind: "Code"; code: string } 
+ | { kind: "HardBreak" } 
+ | { kind: "TaskListMarker"; checked: boolean } 
+ | { kind: "Html"; html: string } 
+ | { kind: "InlineHtml"; html: string } 
+ | { kind: "FootnoteReference"; content: string };
 
 export type Segment = { event: Event; range: [ number , number ] };
 

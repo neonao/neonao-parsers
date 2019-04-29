@@ -1,6 +1,6 @@
 [package]
 name = "neonao_parsers"
-version = "0.3.1"
+version = "0.4.0"
 authors = ["Quan Brew <t@ioover.net>"]
 edition = "2018"
 repository = "https://github.com/quanbrew/neonao-parsers"
@@ -13,7 +13,7 @@ crate-type = ["cdylib"]
 
 [dependencies]
 combine = "^3.8"
-pulldown-cmark = { version = "0.4", default-features = false }
+pulldown-cmark = { version = "0.5", default-features = false }
 serde = { version = "1.0", features = ["derive"] }
 typescript-definitions = "0.1"
 
